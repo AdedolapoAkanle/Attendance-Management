@@ -1,0 +1,43 @@
+.report {
+  padding: 2rem 0;
+  /* display: flex; */
+  /* height: 100vh; */
+}
+
+.report__title {
+  width: 100%;
+  margin: auto;
+  margin-top: 3rem;
+  margin-left: 3rem;
+}
+
+.report__title h4 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.report__title span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  font-size: 14px;
+}
+
+.report__months {
+  width: 20%;
+  margin-left: 1.5rem;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  color: #929aab;
+  border-bottom: 1px solid #2772db;
+}
+
+.report__months:focus {
+  box-shadow: none;
+  border-bottom: 2px solid #2772db;
+}

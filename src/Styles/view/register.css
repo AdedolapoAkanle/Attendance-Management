@@ -1,0 +1,59 @@
+.register {
+  background-color: #f8fcfb;
+  height: 100vh;
+  padding: 2rem 0;
+}
+
+.register__btns,
+.register__add {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1.7rem;
+}
+
+.register__btns {
+  width: 80%;
+  background-color: #ffff;
+  margin-left: 15rem;
+  margin-top: 5rem;
+  border-radius: 5px;
+  padding: 1.8rem 1.5rem;
+}
+
+.register__btn {
+  width: 13%;
+  text-align: center;
+  margin-left: 1rem;
+  padding: 0.5rem 0;
+  /* background-color: #007cb9; */
+  background-color: #2772db;
+}
+
+.register__add {
+  margin: 1rem 0;
+  margin-left: auto;
+  margin-right: 2.8rem;
+
+  background-color: #2772db;
+  padding: 0.5rem 1.3rem;
+}
+
+.add {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.table-icons {
+  text-align: center;
+  width: 30%;
+}
+
+.tab-icon {
+  color: #c00000;
+  cursor: pointer;
+}
+
+.pen {
+  font-size: 12px;
+  color: #7cbd1e;
+}

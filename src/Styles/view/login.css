@@ -1,0 +1,110 @@
+.login {
+  background-color: #f8fcfb;
+  height: 100vh;
+  margin-top: 0;
+}
+
+.login__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 100%; */
+}
+
+.login__text--container {
+  width: 60%;
+  /* padding: 0 2rem; */
+  background-image: url(../../img/happy.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.login__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.login__text h2 {
+  font-size: 60px;
+  font-family: "Literata", serif;
+  font-weight: 700;
+  text-align: center;
+  text-transform: capitalize;
+  /* color: #288fb4; */
+  /* color: #1b3764; */
+  /* color: #f1f2eb; */
+  color: #ffff;
+  line-height: 57px;
+  /* width: 70%; */
+  margin: 0 auto;
+  margin-top: 7rem;
+}
+
+.login__text p {
+  color: #f1f2eb;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+.login__form {
+  width: 28%;
+  margin: auto;
+}
+
+.header {
+  background-color: #f9f9f9;
+  /* box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1); */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 100%;
+  height: 3.5rem;
+}
+
+.form-field {
+  background-color: inherit;
+  padding: 0.8rem 0.5rem;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #2772db;
+  font-size: 14px;
+}
+
+.form-field:focus {
+  box-shadow: none;
+  border-bottom: 2px solid #2772db;
+  background-color: inherit;
+}
+
+.form-label {
+  font-size: 12px;
+  margin-top: 2rem;
+}
+
+.submit-btn {
+  width: 30%;
+  text-align: center;
+  margin-top: 2rem;
+  /* background-color: #007cb9; */
+  background-color: #2772db;
+}
+
+.login__form p {
+  font-size: 12px;
+  margin-top: 2rem;
+  color: #5c5470;
+}
+
+.login__form h5 {
+  font-size: 14px;
+}
+
+.login__form h5 a {
+  text-decoration: none;
+}

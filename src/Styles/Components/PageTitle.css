@@ -1,0 +1,17 @@
+.page {
+  margin-left: 15rem;
+}
+
+.page h2 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 0;
+  /* margin-top: 2rem; */
+  color: #393e46;
+}
+
+.page p {
+  font-size: 14px;
+  font-weight: 5;
+  color: #393e46;
+}
