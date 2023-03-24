@@ -108,3 +108,9 @@
 .login__form h5 a {
   text-decoration: none;
 }
+
+.login__logo {
+  width: 20%;
+  margin: 0 10rem;
+  margin-bottom: 3rem;
+}

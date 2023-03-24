@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { LoginAction } from "../../../redux/actions/type";
+import logo from "../../../img/logo.png";
 import "../../../Styles/view/login.css";
 
 const Login = (obj) => {
@@ -22,6 +24,7 @@ const Login = (obj) => {
     <main className="login">
       <div className="login__container">
         <div className="login__form">
+          <img src={logo} alt="" className="login__logo" />
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label className="form-label">Email address *</Form.Label>
@@ -55,7 +58,13 @@ const Login = (obj) => {
               className="submit-btn"
               onClick={handleSubmit}
             >
-              Submit
+              <Link
+                to={"dashboard"}
+                style={{ color: "#fff", textDecoration: "none" }}
+              >
+                {" "}
+                Submit
+              </Link>
             </Button>
           </Form>
           <p>Forgot Password?</p>
