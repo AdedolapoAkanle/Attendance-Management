@@ -1,0 +1,72 @@
+.modal__text {
+  font-size: 16px;
+  border: none;
+  background-color: inherit;
+}
+
+.modal__btn:hover {
+  background-color: inherit;
+  outline: none;
+  border: none;
+}
+
+.modal__form .mb-3 {
+  margin-bottom: 0 !important;
+}
+
+.modal__form {
+  padding: 0rem 1rem;
+  margin: auto;
+}
+
+.modal__form-field {
+  background-color: inherit;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #2772db;
+  font-size: 14px;
+  color: #929aab;
+  /* width: 100%; */
+}
+
+.modal__form-field:focus {
+  box-shadow: none;
+  border-bottom: 2px solid #2772db;
+  background-color: inherit;
+}
+
+.modal__label {
+  font-size: 12px;
+  margin-top: 2rem;
+}
+
+.modal__drop {
+  cursor: pointer;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.save-modal {
+  background-color: #2772db;
+  color: #fff;
+  padding: 0.5rem 2rem;
+}
+
+.save-modal:hover {
+  background-color: #2772db;
+  color: #fff;
+}
+
+.close-modal {
+  /* border: 1px solid #929aab; */
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+    rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  padding: 0.5rem 2rem;
+}
+
+.close-modal:hover {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+    rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}

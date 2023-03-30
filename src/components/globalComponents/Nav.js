@@ -12,20 +12,36 @@ import {
 import "../../Styles/Components/Nav.css";
 import logo from "../../img/logo.png";
 import { Link } from "react-router-dom";
+import MainTooltip from "./Tooltip";
 
 const Nav = () => {
   return (
     <section>
       {" "}
       <div className="top-nav">
-        <FaBell /> <FaUser />
+        <Link to={"/dashboard"}>
+          <img src={logo} alt="" className="nav-logo" />
+        </Link>
+        <div className="top-icons">
+          <div className="top-icon">
+            <FaBell className=" bell" />
+          </div>
+          <div className="top-icon user-icon">
+            <Link to={"/"}>
+              <MainTooltip
+                tooltipText={"logout"}
+                body={<FaUser className="user" />}
+              />
+            </Link>
+          </div>
+        </div>
       </div>
       <nav>
         <ul>
           <li>
-            <Link to={"/dashboard"}>
+            {/* <Link to={"/dashboard"}>
               <img src={logo} alt="" className="nav-logo" />
-            </Link>
+            </Link> */}
           </li>
           <li>
             <Link className="nav__link" to={"/dashboard"}>
@@ -43,12 +59,12 @@ const Nav = () => {
               Attendance Sheet
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link className="nav__link" to={"/child"}>
               <FaChild className="nav-icon" />
               Children
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link className="nav__link" to={"/report"}>
               <FaClipboardList className="nav-icon" />

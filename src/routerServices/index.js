@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Nav from "../components/globalComponents/Nav";
 import { Child } from "../view/ChildrenAttendance/main";
 import { Dashboard } from "../view/Dashboard/main";

@@ -13,10 +13,9 @@ const Login = (obj) => {
 
   const handleSubmit = (e) => {
     // e.preventDefault();
-
-    if (email == "" || pass == "") {
-      return false;
-    }
+    // if (email == "" || pass == "") {
+    //   return false;
+    // }
     // return false;
   };
 
@@ -52,20 +51,19 @@ const Login = (obj) => {
             </Form.Group>
             {/* <div>{pass}</div> */}
 
-            <Button
-              variant="primary"
-              type="submit"
-              className="submit-btn"
-              onClick={handleSubmit}
+            <Link
+              to={"dashboard"}
+              style={{ color: "#fff", textDecoration: "none" }}
             >
-              <Link
-                to={"dashboard"}
-                style={{ color: "#fff", textDecoration: "none" }}
+              <Button
+                variant="primary"
+                type="submit"
+                className="submit-btn"
+                onClick={handleSubmit()}
               >
-                {" "}
                 Submit
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </Form>
           <p>Forgot Password?</p>
           <h5>

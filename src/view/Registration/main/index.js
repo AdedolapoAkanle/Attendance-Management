@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
 import { FaPen, FaPlus, FaTimes } from "react-icons/fa";
+import FormModal from "../../../components/globalComponents/Modal";
 import { PageTitle } from "../../../components/globalComponents/PageTitle";
+import MainTooltip from "../../../components/globalComponents/Tooltip";
 import "../../../Styles/view/register.css";
 
 const Register = () => {
@@ -54,17 +56,21 @@ const Register = () => {
           <div style={{}}>
             <div className="register__btns">
               <Button variant="primary" type="submit" className="register__btn">
-                Parent
+                <FormModal
+                  add={false}
+                  header={"Register Parent"}
+                  text="Parent"
+                />
               </Button>
               <Button variant="primary" type="submit" className="register__btn">
-                Child
+                <FormModal add={false} header={"Register Child"} text="Child" />
               </Button>
             </div>
           </div>
 
-          <Button className="register__add">
-            <FaPlus className="add" />
-          </Button>
+          {/* <Button className="register__add">
+            <FormModal header={"Register Child"} text={<FaPlus />} />
+          </Button> */}
 
           <div
             style={{
@@ -100,9 +106,15 @@ const Register = () => {
                   <td>
                     {" "}
                     <div className="table-icons">
-                      {" "}
-                      <FaPen className="tab-icon pen" />{" "}
-                      <FaTimes className="tab-icon" />
+                      <MainTooltip
+                        tooltipText={"Edit"}
+                        body={<FaPen className="tab-icon pen" />}
+                      />
+
+                      <MainTooltip
+                        tooltipText={"Delete"}
+                        body={<FaTimes className="tab-icon" />}
+                      />
                     </div>
                   </td>
                 </tr>
@@ -114,9 +126,15 @@ const Register = () => {
                   <td>
                     {" "}
                     <div className="table-icons">
-                      {" "}
-                      <FaPen className="tab-icon pen" />{" "}
-                      <FaTimes className="tab-icon" />
+                      <MainTooltip
+                        tooltipText={"Edit"}
+                        body={<FaPen className="tab-icon pen" />}
+                      />
+
+                      <MainTooltip
+                        tooltipText={"Delete"}
+                        body={<FaTimes className="tab-icon" />}
+                      />
                     </div>
                   </td>
                 </tr>
@@ -126,11 +144,16 @@ const Register = () => {
                   <td>Talabi</td>
                   <td>Female</td>
                   <td>
-                    {" "}
                     <div className="table-icons">
-                      {" "}
-                      <FaPen className="tab-icon pen" />{" "}
-                      <FaTimes className="tab-icon" />
+                      <MainTooltip
+                        tooltipText={"Edit"}
+                        body={<FaPen className="tab-icon pen" />}
+                      />
+
+                      <MainTooltip
+                        tooltipText={"Delete"}
+                        body={<FaTimes className="tab-icon" />}
+                      />
                     </div>
                   </td>
                 </tr>

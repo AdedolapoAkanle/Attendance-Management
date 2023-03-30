@@ -7,7 +7,7 @@ nav {
   width: 18%;
   height: 100%;
   position: fixed;
-  padding-top: 0;
+  padding-top: 2rem;
 }
 
 ul {
@@ -38,7 +38,7 @@ li:first-child {
 }
 
 .nav__link:hover {
-  background-color: #eeeeee;
+  background-color: #dfdfdf;
   cursor: pointer;
   color: #393e46;
 }
@@ -52,13 +52,52 @@ li:first-child {
 }
 
 .nav-logo {
-  width: 35%;
+  width: 12%;
+  cursor: default;
   /* margin-bottom: 2rem; */
 }
 
 .top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: "";
   width: 100%;
-  height: 50px;
+  height: 60px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 0 2rem;
+  margin: auto;
+}
+
+.top-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-icon {
+  /* padding: 0.5rem; */
+  /* background-color: red;     */
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  background-color: #ffc97c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-icon {
+  background-color: #d6e4f0;
+  margin-left: 0.5rem;
+}
+
+.bell {
+  color: #ea7659;
+}
+
+.user {
+  color: #1e56a0;
 }
