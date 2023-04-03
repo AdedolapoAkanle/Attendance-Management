@@ -18,7 +18,7 @@ const Nav = () => {
   return (
     <section>
       {" "}
-      <div className="top-nav">
+      {/* <div className="top-nav">
         <Link to={"/dashboard"}>
           <img src={logo} alt="" className="nav-logo" />
         </Link>
@@ -35,13 +35,13 @@ const Nav = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
       <nav>
         <ul>
           <li>
-            {/* <Link to={"/dashboard"}>
+            <Link to={"/dashboard"}>
               <img src={logo} alt="" className="nav-logo" />
-            </Link> */}
+            </Link>
           </li>
           <li>
             <Link className="nav__link" to={"/dashboard"}>

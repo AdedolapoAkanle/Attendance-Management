@@ -15,7 +15,7 @@ ul {
   /* color: #22313f; */
   /* color: #ebd5d5; */
   padding-left: 0;
-  padding-top: 2rem;
+  /* padding-top: 2rem; */
   font-size: 15px;
 }
 
@@ -52,7 +52,7 @@ li:first-child {
 }
 
 .nav-logo {
-  width: 12%;
+  width: 25%;
   cursor: default;
   /* margin-bottom: 2rem; */
 }
@@ -67,6 +67,8 @@ li:first-child {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 0 2rem;
   margin: auto;
+  position: fixed;
+  z-index: 1;
 }
 
 .top-icons {

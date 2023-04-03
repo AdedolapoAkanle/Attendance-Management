@@ -3,6 +3,7 @@ import { Button, Table } from "react-bootstrap";
 import { FaPen, FaPlus, FaTimes } from "react-icons/fa";
 import FormModal from "../../../components/globalComponents/Modal";
 import { PageTitle } from "../../../components/globalComponents/PageTitle";
+import TablePagination from "../../../components/globalComponents/Pagination";
 import MainTooltip from "../../../components/globalComponents/Tooltip";
 import "../../../Styles/view/register.css";
 
@@ -51,7 +52,7 @@ const Register = () => {
           </Form> */}
           <PageTitle
             header={"Registration"}
-            par={"Register parents and children"}
+            par={"Register parent and children"}
           />
           <div style={{}}>
             <div className="register__btns">
@@ -74,12 +75,12 @@ const Register = () => {
 
           <div
             style={{
-              width: "80%",
+              width: "90%",
               margin: "auto",
-              marginLeft: "15rem",
-              backgroundColor: "#ffff",
+              marginLeft: "12rem",
+              // backgroundColor: "#ffff",
               borderRadius: "5px",
-              padding: "1.5rem",
+              // padding: "1.5rem",
             }}
           >
             <Table
@@ -91,17 +92,21 @@ const Register = () => {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Full Name</th>
+                  <th>Surname</th>
+                  <th>Parent's Name</th>
+                  <th>Child's Name</th>
                   <th>Age</th>
                   <th>Gender</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr style={{}}>
                   <td>1</td>
-                  <td>Jide</td>
                   <td>Alabi</td>
+                  <td>Ronke</td>
+                  <td>Jide</td>
+                  <td>8</td>
                   <td>Male</td>
                   <td>
                     {" "}
@@ -120,8 +125,10 @@ const Register = () => {
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>Jacob</td>
                   <td>Chukwu</td>
+                  <td>Abigail</td>
+                  <td>Joshua</td>
+                  <td>10</td>
                   <td>Male</td>
                   <td>
                     {" "}
@@ -140,8 +147,10 @@ const Register = () => {
                 </tr>
                 <tr>
                   <td>3</td>
-                  <td>Adetoun</td>
                   <td>Talabi</td>
+                  <td>Esther</td>
+                  <td>Adetoun</td>
+                  <td>6</td>
                   <td>Female</td>
                   <td>
                     <div className="table-icons">
@@ -159,6 +168,7 @@ const Register = () => {
                 </tr>
               </tbody>
             </Table>
+            <TablePagination />
           </div>
         </div>
       </section>

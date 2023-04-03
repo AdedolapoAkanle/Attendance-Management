@@ -5,9 +5,9 @@ import Tooltip from "react-bootstrap/Tooltip";
 const MainTooltip = ({ tooltipText, body }) => {
   return (
     <OverlayTrigger
-      placement="bottom"
+      placement="bottom-start"
       overlay={
-        <Tooltip id="tooltip-disabled" style={{ fontSize: "10px" }}>
+        <Tooltip id="tooltip-disabled" style={{ fontSize: "10px", padding: 0 }}>
           {tooltipText}
         </Tooltip>
       }
