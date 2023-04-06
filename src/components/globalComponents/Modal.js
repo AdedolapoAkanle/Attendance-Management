@@ -42,6 +42,15 @@ const FormModal = ({ header, add = true, text }) => {
               />
             </Form.Group>
 
+            <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Label className="modal__label">Parent's number</Form.Label>
+              <Form.Control
+                type="tel"
+                placeholder="Enter number"
+                className="modal__form-field"
+              />
+            </Form.Group>
+
             <Form.Group>
               <Form.Label className="modal__label">Gender</Form.Label>
               <Form.Select

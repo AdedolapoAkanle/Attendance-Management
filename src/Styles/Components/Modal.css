@@ -61,12 +61,17 @@
 
 .close-modal {
   /* border: 1px solid #929aab; */
+  border: none;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
     rgb(209, 213, 219) 0px 0px 0px 1px inset;
   padding: 0.5rem 2rem;
+  background-color: inherit;
+  color: #5c5470;
 }
 
 .close-modal:hover {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
     rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  background-color: inherit;
+  color: #5c5470;
 }

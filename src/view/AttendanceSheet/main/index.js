@@ -2,6 +2,7 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import { PageTitle } from "../../../components/globalComponents/PageTitle";
 import { ScrollableTable } from "../operations/ScrollableTable";
+import "../../../Styles/view/AttendanceSheet.css";
 
 export const AttendanceSheet = () => {
   return (
@@ -10,7 +11,7 @@ export const AttendanceSheet = () => {
         <div className="container">
           <PageTitle header="Children Log" />
           <div className="attendance__container" style={{ marginTop: "5rem" }}>
-            <Form
+            <Form className="attendance__form"
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -23,7 +24,7 @@ export const AttendanceSheet = () => {
                 <Form.Control
                   type="text"
                   placeholder="Search name"
-                  className=""
+                  className="attendance__form-field"
                 />
               </Form.Group>
 
@@ -31,7 +32,7 @@ export const AttendanceSheet = () => {
                 <Form.Control
                   type="date"
                   placeholder="Enter date"
-                  className=""
+                  className="attendance__form-field"
                 />
               </Form.Group>
             </Form>
