@@ -58,7 +58,7 @@ export class Api {
     return res;
   }
 
-  async edit(page, data) {
+  async update(page, data) {
     const req = await fetch(`${url}/${page}`, {
       method: "PUT",
       headers: this.headers,

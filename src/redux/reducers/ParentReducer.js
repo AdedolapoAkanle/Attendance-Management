@@ -8,10 +8,13 @@ const INITIAL_STATE = {
     phone: "",
     id: "",
     arr: [],
+    showParentModal: false,
+    showEditParentModal: false,
+    selectedParentID: "",
   },
 };
 
-const parentReducer = (state = INITIAL_STATE, action) => {
+const ParentReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PARENT:
       return { ...state, parentState: action.payload };
@@ -21,4 +24,4 @@ const parentReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default parentReducer;
+export default ParentReducer;

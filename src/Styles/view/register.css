@@ -15,27 +15,21 @@
   /* background-color: #ffff; */
   margin-left: 4rem;
   margin-top: 5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   border-radius: 5px;
-  padding: 1.8rem 0;
 }
 
 .register__btn {
   width: 10%;
   text-align: center;
   margin-left: 1rem;
-  /* padding: 0.5rem 0; */
-  /* background-color: #007cb9; */
-  background-color: #2772db;
+  padding: 0.8rem 0;
 }
 
 .register__add {
   margin: 1rem 0;
   margin-left: auto;
   margin-right: 2.8rem;
-
-  /* background-color: #2772db; */
-  /* padding: 0.5rem 1.3rem; */
 }
 
 .register__add:hover {
@@ -51,7 +45,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 0.2rem;
-  width: 30%;
+  width: 35%;
 }
 
 .tab-icon {
@@ -62,11 +56,9 @@
 .pen {
   font-size: 12px;
   color: #7cbd1e;
-  display: flex;
-  align-items: center;
   /* margin-right: 1rem; */
 }
 
 .eye {
-  color: #5c5470;
+  color: #a2a8d3;
 }

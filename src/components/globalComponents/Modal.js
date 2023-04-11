@@ -3,9 +3,47 @@ import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FaPlus } from "react-icons/fa";
+import { connect } from "react-redux";
+import { Api } from "../../api";
+import { getChild } from "../../Handlers/ChildHandlers";
+import { childAction } from "../../redux/actions/type";
 import "../../Styles/Components/Modal.css";
 
-const FormModal = ({ header, add = true, text }) => {
+const FormModal = ({ header, add = true, text, state, updateState }) => {
+  const handleOnchange = (e, field) => {
+    const value = e.target.value;
+    updateState({ ...state, [field]: value });
+  };
+
+  const { firstName, lastName, gender, dob } = state;
+
+  const handleSubmit = async () => {
+    const data = {
+      firstName,
+      lastName,
+      gender,
+      dob,
+    };
+
+    console.log(data);
+
+    const api = new Api();
+    const res = await api.post("child", data);
+
+    if (
+      data.firstName == "" ||
+      data.lastName == "" ||
+      data.gender == "" ||
+      data.dob
+    ) {
+      return alert(res.message);
+    } else {
+      alert("registration successful");
+    }
+
+    const child = await getChild();
+    updateState({ ...state, arr: child });
+  };
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -88,4 +126,12 @@ const FormModal = ({ header, add = true, text }) => {
 
 // render(<Example />);
 
-export default FormModal;
+const mapStateToProps = ({ child }) => ({
+  state: child.childState,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  updateState: (params) => dispatch(childAction(params)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormModal);

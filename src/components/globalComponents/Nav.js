@@ -54,9 +54,9 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <Link className="nav__link" to={"/attendance-sheet"}>
+            <Link className="nav__link" to={"/child"}>
               <FaFileAlt className="nav-icon" />
-              Attendance Sheet
+              Child Log
             </Link>
           </li>
           {/* <li>

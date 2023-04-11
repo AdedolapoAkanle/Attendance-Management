@@ -1,10 +1,12 @@
 import { combineReducers, createStore } from "redux";
+import ChildReducer from "./ChildReducer";
 import LoginReducer from "./LoginReducer";
-import parentReducer from "./ParentReducer";
+import ParentReducer from "./ParentReducer";
 
 const joinReducers = combineReducers({
   login: LoginReducer,
-  parent: parentReducer,
+  parent: ParentReducer,
+  child: ChildReducer,
 });
 
 export const store = createStore(

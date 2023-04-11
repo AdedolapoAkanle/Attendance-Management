@@ -1,4 +1,4 @@
-import { LOGIN, PARENT } from ".";
+import { CHILD, LOGIN, PARENT } from ".";
 
 export const LoginAction = (param) => {
   return {
@@ -10,6 +10,13 @@ export const LoginAction = (param) => {
 export const parentAction = (param) => {
   return {
     type: PARENT,
+    payload: param,
+  };
+};
+
+export const childAction = (param) => {
+  return {
+    type: CHILD,
     payload: param,
   };
 };
