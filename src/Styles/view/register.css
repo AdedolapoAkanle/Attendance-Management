@@ -14,26 +14,51 @@
   width: 100%;
   /* background-color: #ffff; */
   margin-left: 4rem;
-  margin-top: 5rem;
-  margin-bottom: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   border-radius: 5px;
 }
 
-.register__btn {
+.register__btn--active {
   width: 10%;
   text-align: center;
   margin-left: 1rem;
   padding: 0.8rem 0;
 }
 
+.register__btn--add {
+  width: 10%;
+  text-align: center;
+  margin-left: 1rem;
+  padding: 0.8rem 0;
+}
+
+.register__btn {
+  background-color: #fefefe;
+  color: #a2a8d3;
+  border: 1px solid #a2a8d3;
+  width: 10%;
+  text-align: center;
+  margin-left: 1rem;
+  padding: 0.8rem 0;
+}
+
+.register__btn:hover {
+  background-color: #fefefe;
+  color: #a2a8d3;
+  border: 1px solid #a2a8d3;
+}
+
 .register__add {
   margin: 1rem 0;
   margin-left: auto;
-  margin-right: 2.8rem;
+  margin-right: -4rem;
+  /* margin-right: 2.8rem; */
 }
 
-.register__add:hover {
-  background-color: #2772db;
+.reg__add {
+  padding: 0.5rem 0;
+  width: 5%;
 }
 
 .add {
@@ -45,12 +70,12 @@
   display: flex;
   justify-content: space-between;
   padding: 0 0.2rem;
-  width: 35%;
 }
 
 .tab-icon {
   color: #c00000;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .pen {
@@ -60,5 +85,5 @@
 }
 
 .eye {
-  color: #a2a8d3;
+  /* color: #a2a8d3; */
 }

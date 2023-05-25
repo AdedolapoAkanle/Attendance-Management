@@ -20,7 +20,7 @@
   border: none;
   border-bottom: 1px solid #2772db;
   font-size: 14px;
-  color: #929aab;
+  /* color: #929aab; */
 }
 
 .child__form-field:focus {

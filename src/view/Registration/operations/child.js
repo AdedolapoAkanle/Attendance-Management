@@ -1,4 +1,7 @@
-import { capitalizeFirstLetter } from "../../../HelperFunction/commonFunction";
+import {
+  capitalizeFirstLetter,
+  formatDate,
+} from "../../../HelperFunction/commonFunction";
 import { Api } from "../../../api";
 
 export const submitChild = async (data) => {
@@ -7,13 +10,12 @@ export const submitChild = async (data) => {
   try {
     const api = new Api();
     const res = await api.post("child", data);
-    console.log(res);
 
     if (res.success) {
       alert("registration successful");
     } else {
       console.log("errr");
-      throw new Error(res);
+      throw new Error(res.message);
     }
 
     child = await getChild();
@@ -34,7 +36,6 @@ export const getChild = async () => {
   try {
     const api = new Api();
     const res = await api.get("child");
-    console.log(res);
 
     list = res.data.map((el, index) => {
       return {
@@ -43,7 +44,8 @@ export const getChild = async () => {
         firstName: capitalizeFirstLetter(el.first_name),
         lastName: capitalizeFirstLetter(el.last_name),
         gender: capitalizeFirstLetter(el.gender),
-        dob: new Intl.DateTimeFormat("en-GB").format(new Date(el.d_o_b)),
+        parentId: el.parent_id,
+        dob: formatDate(el.d_o_b),
         status: el.status,
       };
     });
@@ -60,7 +62,6 @@ export const getSingleChild = async (id) => {
   try {
     const api = new Api();
     const res = await api.get(`child/${id}`);
-    console.log(res);
     rlt = res.data[0];
   } catch (err) {
     console.log("error:", err);
@@ -74,6 +75,13 @@ export const deleteSingleChild = async (id) => {
     const api = new Api();
     const res = await api.delete(`child/${id}`, { id });
     console.log("delete:", res);
+
+    if (res.success) {
+      alert();
+    } else {
+      console.log("errr");
+      throw new Error(res.message);
+    }
   } catch (err) {
     console.log("error:", err);
   }
@@ -81,22 +89,35 @@ export const deleteSingleChild = async (id) => {
 
 export const submitSingleEditChild = async (data) => {
   let child;
+  console.log(data, "dataaaa");
 
   try {
-    const { id, title, firstName, lastName, phone } = data;
+    const { id, firstName, lastName, parentId, gender, dob } = data;
     const api = new Api();
     const res = await api.update(`child/${id}`, {
-      title,
       firstName,
       lastName,
-      phone,
+      parentId,
+      gender,
+      dob,
     });
-    child = await getChild();
+    // console.log(res, "ressss");
+    if (
+      data.firstName === "" ||
+      data.lastName === "" ||
+      data.parentId === "" ||
+      data.gender === "" ||
+      data.dob === ""
+    ) {
+      return alert(res.message);
+    } else {
+      alert(res.message);
+    }
 
+    child = await getChild();
     console.log(res, "okay");
   } catch (err) {
     console.log("error:", err);
   }
-
   return child;
 };

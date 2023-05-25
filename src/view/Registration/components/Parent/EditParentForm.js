@@ -6,8 +6,8 @@ import "../../../../Styles/Components/Modal.css";
 
 const EditParentForm = ({ state, updateState }) => {
   // State
-  const { title, firstName, lastName, phone } = state;
-
+  const { id, title, firstName, lastName, phone } = state;
+  console.log(state);
   // Handlers
   const handleOnchange = (e, field) => {
     const value = e.target.value;

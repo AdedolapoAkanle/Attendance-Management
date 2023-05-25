@@ -1,5 +1,8 @@
+import React from "react";
+import { FaPen, FaRegEye, FaTimes } from "react-icons/fa";
 import { capitalizeFirstLetter } from "../../../HelperFunction/commonFunction";
 import { Api } from "../../../api";
+import MainTooltip from "../../../components/globalComponents/Tooltip";
 
 export const getParent = async () => {
   let list = [];
@@ -8,9 +11,10 @@ export const getParent = async () => {
     const api = new Api();
     const res = await api.get("parent");
 
-    list = res?.data.map((el) => {
+    list = res?.data.map((el, index) => {
       return {
         id: el.id,
+        count: index + 1,
         title: capitalizeFirstLetter(el.title),
         firstName: capitalizeFirstLetter(el.first_name),
         lastName: capitalizeFirstLetter(el.last_name),
@@ -95,7 +99,7 @@ export const submitSingleEditParent = async (data) => {
     ) {
       return alert(res.message);
     } else {
-      alert("edited successfully");
+      alert(res.message);
     }
     parent = await getParent();
 
@@ -105,4 +109,25 @@ export const submitSingleEditParent = async (data) => {
   }
 
   return parent;
+};
+
+export const fetchParentByPhone = async () => {
+  let list = [];
+
+  try {
+    const res = await getParent();
+    console.log(res);
+
+    list = res.map((el) => {
+      return {
+        phone: el.phone,
+      };
+    });
+
+    console.log(list);
+  } catch (err) {
+    console.log("error:", err);
+  }
+
+  return list;
 };

@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { childAction } from "../../../../../redux/actions/type";
-import "../../../../../Styles/Components/Modal.css";
+import { childAction, parentAction } from "../../../../redux/actions/type";
+import "../../../../Styles/Components/Modal.css";
+import { fetchParentByPhone } from "../../operations/parent";
 
-const CreateChildForm = ({ state, updateState }) => {
+const CreateChildForm = ({
+  state,
+  updateState,
+  stateParent,
+  updateParentState,
+}) => {
+  const { arr } = stateParent;
+  useEffect(() => {
+    handleFetch();
+  }, []);
+
+  const handleFetch = async () => {
+    const phone = await fetchParentByPhone();
+    updateState({ ...state, phone });
+    console.log(phone);
+  };
+
   const handleOnchange = (e, field) => {
     const value = e.target.value;
     updateState({ ...state, [field]: value });
@@ -32,14 +49,21 @@ const CreateChildForm = ({ state, updateState }) => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicName">
+      <Form.Group>
         <Form.Label className="modal__label">Parent's number</Form.Label>
-        <Form.Control
+        <Form.Select
+          aria-label=""
           type="tel"
-          placeholder="Enter number"
-          className="modal__form-field"
+          className="modal__form-field modal__drop"
           onChange={(e) => handleOnchange(e, "parentId")}
-        />
+        >
+          <option hidden>Search...</option>
+          {arr.map((el) => (
+            <option key={el.phone} value={el.phone}>
+              {el.phone}({el.lastName})
+            </option>
+          ))}
+        </Form.Select>
       </Form.Group>
 
       <Form.Group>
@@ -68,12 +92,14 @@ const CreateChildForm = ({ state, updateState }) => {
   );
 };
 
-const mapStateToProps = ({ child }) => ({
+const mapStateToProps = ({ child, parent }) => ({
   state: child.childState,
+  stateParent: parent.parentState,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   updateState: (params) => dispatch(childAction(params)),
+  updateParentState: (params) => dispatch(parentAction(params)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateChildForm);

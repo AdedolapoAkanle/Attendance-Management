@@ -11,8 +11,9 @@ const INITIAL_STATE = {
     arr: [],
     showChildModal: false,
     showEditChildModal: false,
-    selectedChildID: "",
+    selectedId: "",
     query: "",
+    isLoading: true,
   },
 };
 

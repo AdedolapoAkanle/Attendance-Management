@@ -1,17 +1,15 @@
 import React from "react";
-import { useEffect } from "react";
-import { Button, Table } from "react-bootstrap";
-import { FaEye, FaPen, FaTimes } from "react-icons/fa";
+import { Button } from "react-bootstrap";
+import { FaPlus } from "react-icons/fa";
 import { connect } from "react-redux";
-import FormModal from "../../../components/globalComponents/Modal";
 import { PageTitle } from "../../../components/globalComponents/PageTitle";
-import TablePagination from "../../../components/globalComponents/Pagination";
-import MainTooltip from "../../../components/globalComponents/Tooltip";
-import { childAction, parentAction } from "../../../redux/actions/type";
 import {
-  deleteSingleParent,
+  childAction,
+  parentAction,
+  registerAction,
+} from "../../../redux/actions/type";
+import {
   getParent,
-  getSingleParent,
   submitParent,
   submitSingleEditParent,
 } from "../operations/parent";
@@ -19,12 +17,25 @@ import "../../../Styles/view/register.css";
 import CustomModal from "../../../components/globalComponents/CustomModal";
 import CreateParentForm from "../components/Parent/CreateParentForm";
 import EditParentForm from "../components/Parent/EditParentForm";
-import CreateChildForm from "../components/Child/components/CreateChildForm";
-import { submitChild } from "../operations/child";
+import CreateChildForm from "../components/Child/CreateChildForm";
+import {
+  getChild,
+  submitChild,
+  submitSingleEditChild,
+} from "../operations/child";
+import EditChildForm from "../components/Child/EditChildForm";
+import ParentTable from "../components/Parent/ParentTable";
+import ChildTable from "../components/Child/ChildTable";
 
-const Register = ({ state, updateState, stateChild, updateChildState }) => {
+const Register = ({
+  state,
+  updateState,
+  stateChild,
+  updateChildState,
+  stateRegister,
+  updateRegisterState,
+}) => {
   const {
-    arr,
     showParentModal,
     showEditParentModal,
     title,
@@ -37,6 +48,7 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
   const {
     firstName: childFirstName,
     lastName: childLastName,
+    id: selectedId,
     parentId,
     gender,
     dob,
@@ -44,34 +56,9 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
     showEditChildModal,
   } = stateChild;
 
-  useEffect(() => {
-    handleFetch();
-  }, []);
-
-  const handleFetch = async () => {
-    const parent = await getParent();
-    updateState({ ...state, arr: parent });
-  };
+  const { activeTab } = stateRegister;
 
   // Parent Handlers
-  const handleEdit = async (id) => {
-    const parent = await getSingleParent(id);
-    updateState({
-      ...state,
-      selectedParentID: id,
-      showEditParentModal: true,
-      title: parent.title,
-      firstName: parent.first_name,
-      lastName: parent.last_name,
-      phone: parent.phone,
-    });
-  };
-
-  const handleDelete = async (id) => {
-    await deleteSingleParent(id);
-    await handleFetch();
-  };
-
   const handleHideParentModal = (type) => {
     if (type === "create") {
       return updateState({ ...state, showParentModal: false });
@@ -82,7 +69,8 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
 
   const handleRegisterParent = async () => {
     await submitParent({ title, firstName, lastName, phone });
-    await handleFetch();
+    const parent = await getParent();
+    updateState({ ...state, arr: parent });
   };
 
   const submitEditParent = async () => {
@@ -107,6 +95,8 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
       gender,
       dob,
     });
+    const child = await getChild();
+    updateChildState({ ...stateChild, arr: child });
   };
 
   const handleHideChildModal = (type) => {
@@ -117,6 +107,46 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
     updateChildState({ ...stateChild, showEditChildModal: false });
   };
 
+  const submitEditChild = async () => {
+    const data = {
+      id: stateChild.selectedId,
+      firstName: childFirstName,
+      lastName: childLastName,
+      parentId,
+      gender,
+      dob,
+    };
+    console.log(stateChild, "child");
+    console.log(data, "label");
+    const child = await submitSingleEditChild(data);
+    console.log(child, "child state");
+    updateChildState({
+      ...stateChild,
+      arr: child,
+      showEditChildModal: false,
+    });
+
+    // console.log(child, "child");
+    console.log(stateChild, "state child");
+  };
+
+  // Button Handler
+  const handleButton = () => {
+    if (activeTab === "parent") {
+      return updateState({ ...state, showParentModal: true });
+    }
+
+    return updateChildState({ ...stateChild, showChildModal: true });
+  };
+
+  const renderTable = () => {
+    if (activeTab === "parent") {
+      return <ParentTable />;
+    }
+
+    return <ChildTable />;
+  };
+
   return (
     <main className="register">
       <section className="container-fluid register__section">
@@ -125,27 +155,45 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
             header={"Registration"}
             par={"Register parent and children"}
           />
-          <div style={{}}>
+
+          <div>
             <div className="register__btns">
               <Button
-                variant="primary"
                 type="submit"
-                className="register__btn"
-                onClick={() => updateState({ ...state, showParentModal: true })}
+                className={
+                  activeTab == "parent"
+                    ? `register__btn--active`
+                    : `register__btn`
+                }
+                onClick={() =>
+                  updateRegisterState({ ...stateRegister, activeTab: "parent" })
+                }
               >
                 Parent
               </Button>
 
               <Button
-                variant="primary"
                 type="submit"
-                className="register__btn"
+                className={
+                  activeTab == "child"
+                    ? `register__btn--active`
+                    : `register__btn`
+                }
                 onClick={() =>
-                  updateChildState({ ...stateChild, showChildModal: true })
+                  updateRegisterState({ ...stateRegister, activeTab: "child" })
                 }
               >
-                {/* <FormModal add={false} header={"Register Child"} text="Child" /> */}
                 Child
+              </Button>
+            </div>
+
+            <div className="register__add">
+              <Button
+                type="submit"
+                className="register__btn--add reg__add"
+                onClick={handleButton}
+              >
+                <FaPlus className="add" />
               </Button>
             </div>
           </div>
@@ -155,71 +203,10 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
               width: "90%",
               margin: "auto",
               marginLeft: "12rem",
-              // backgroundColor: "#ffff",
               borderRadius: "5px",
-              // padding: "1.5rem",
             }}
           >
-            <Table
-              striped
-              style={{
-                width: "100%",
-              }}
-            >
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Title</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Phone</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {arr.map((el, index) => (
-                  <tr key={el.id}>
-                    <td>{index + 1}</td>
-                    <td>{el.title}</td>
-                    <td>{el.firstName}</td>
-                    <td>{el.lastName}</td>
-                    <td>{el.phone}</td>
-                    <td>
-                      {" "}
-                      <div className="table-icons">
-                        <MainTooltip
-                          tooltipText={"Edit"}
-                          body={
-                            <FaPen
-                              style={{ margintBottom: 0 }}
-                              className="tab-icon pen"
-                              onClick={() => handleEdit(el.id)}
-                            />
-                          }
-                        />
-
-                        <MainTooltip
-                          tooltipText={"Delete"}
-                          body={
-                            <FaTimes
-                              className="tab-icon"
-                              onClick={() => handleDelete(el.id)}
-                            />
-                          }
-                        />
-
-                        <MainTooltip
-                          tooltipText={"View"}
-                          body={<FaEye className="tab-icon eye" />}
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-            {/* <TablePagination /> */}
-
+            {renderTable()}
             {/* Parent Modal */}
             <CustomModal
               header={"Register Parent"}
@@ -228,7 +215,6 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
               onHide={() => handleHideParentModal("create")}
               onSubmit={handleRegisterParent}
             />
-
             <CustomModal
               header={"Edit Parent"}
               body={<EditParentForm />}
@@ -236,7 +222,6 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
               onHide={() => handleHideParentModal("edit")}
               onSubmit={submitEditParent}
             />
-
             {/* Child Modal */}
             <CustomModal
               header={"Register Child"}
@@ -244,6 +229,13 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
               showModal={showChildModal}
               onHide={() => handleHideChildModal("create")}
               onSubmit={handleRegisterChild}
+            />
+            <CustomModal
+              header={"Edit Child"}
+              body={<EditChildForm />}
+              showModal={showEditChildModal}
+              onHide={() => handleHideChildModal("edit")}
+              onSubmit={submitEditChild}
             />
           </div>
         </div>
@@ -253,15 +245,18 @@ const Register = ({ state, updateState, stateChild, updateChildState }) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state.child);
   return {
     state: state.parent.parentState,
     stateChild: state.child.childState,
+    stateRegister: state.registration.registerState,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   updateState: (params) => dispatch(parentAction(params)),
   updateChildState: (params) => dispatch(childAction(params)),
+  updateRegisterState: (params) => dispatch(registerAction(params)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

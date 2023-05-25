@@ -1,29 +1,43 @@
-import React from "react";
-import DataTable from "react-data-table-component";
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
-const Tables = ({ thead, data, column }) => {
-  const columns = [
-    {
-      name: "#",
-      // selector: (row) => row.#,
-    },
-
-    {
-      name: "Full Name",
-      selector: (row) => row.fullName,
-    },
-
-    {
-      name: "Age",
-      selector: (row) => row.age,
-    },
-
-    {
-      name: "Gender",
-      selector: (row) => row.gender,
-    },
-  ];
-  return <div></div>;
+const options = {
+  paginationSize: 10,
+  pageStartIndex: 1,
+  hideSizePerPage: true,
+  hidePageListOnlyOnePage: true,
+  paginationStyle: {
+    backgroundColor: "blue",
+    color: "red",
+    border: "none",
+  },
 };
 
-export default Tables;
+const handleClick = (row) => {
+  if (true) {
+    console.log(`Clicked row ${row.id}`);
+  }
+};
+
+const NewTable = ({ data, columns, style }) => {
+  return (
+    <div style={style}>
+      <BootstrapTable
+        keyField="id"
+        data={data}
+        columns={columns}
+        pagination={data.length > 10 ? paginationFactory(options) : null}
+        rowEvents={{
+          onClick: (e, row, rowIndex) => {
+            handleClick(row);
+          },
+        }}
+        // striped
+        hover
+        condensed
+      />
+    </div>
+  );
+};
+
+export default NewTable;

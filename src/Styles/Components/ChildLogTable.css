@@ -1,0 +1,51 @@
+.table__field {
+  border: none;
+  border-bottom: 1px solid #2772db;
+  /* text-align: center; */
+  background-color: inherit;
+  font-size: 11px;
+  width: 25%;
+  text-align: center;
+}
+
+.table__field:focus {
+  box-shadow: 0;
+  background-color: inherit;
+  outline: none;
+}
+
+.table__btn {
+  background-color: #2772db;
+  border: none;
+  border-radius: 2px;
+  color: #fff;
+  padding: 0.3rem;
+  margin-right: 0.5rem;
+}
+
+.check {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.check-icon {
+  color: #42b883;
+  font-size: 16px;
+}
+
+.check-btn {
+  display: flex;
+  align-items: center;
+  color: #2772db;
+  font-size: 16px;
+  margin-right: 100px;
+  cursor: pointer;
+}
+.undo-icon {
+  color: #dbd8e3;
+  cursor: pointer;
+  font-size: 14px;
+}

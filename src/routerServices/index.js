@@ -5,6 +5,7 @@ import { Dashboard } from "../view/Dashboard/main";
 import Login from "../view/Login/main";
 import Register from "../view/Registration/main";
 import ChildLog from "../view/ChildLog/main";
+import Report from "../view/Report/main";
 
 const Routers = () => {
   return (
@@ -17,8 +18,8 @@ const Routers = () => {
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" exact element={<Register />} />
-        <Route path="/child" element={<ChildLog />} />
-        {/* <Route path="/report" element={<Report />} /> */}
+        <Route path="/child-log" element={<ChildLog />} />
+        <Route path="/report" element={<Report />} />
         {/* <Route path="/attendance-sheet" element={<AttendanceSheet />} /> */}
       </Routes>
     </BrowserRouter>

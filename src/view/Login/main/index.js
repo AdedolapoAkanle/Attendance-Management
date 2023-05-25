@@ -1,22 +1,30 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { LoginAction } from "../../../redux/actions/type";
 import logo from "../../../img/logo.png";
+import { useNavigate } from "react-router-dom";
 import "../../../Styles/view/login.css";
 
 const Login = (obj) => {
   const { state, updateState } = obj;
+  const navigate = useNavigate();
 
-  const { email, pass, errorMsg } = state;
+  const { email, password, errorMsg } = state;
+  console.log(state);
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    // if (email == "" || pass == "") {
-    //   return false;
-    // }
-    // return false;
+    e.preventDefault();
+    if ((email === "" && password === "") || email === "" || password === "") {
+      updateState({ ...state, errorMsg: "*All fields are required!" });
+      return;
+    }
+
+    if (email === "dolapo@gmail.com" && password === "dolapo") {
+      navigate("/dashboard");
+    } else {
+      updateState({ ...state, errorMsg: "*Incorrect email or password!" });
+    }
   };
 
   return (
@@ -24,19 +32,21 @@ const Login = (obj) => {
       <div className="login__container">
         <div className="login__form">
           <img src={logo} alt="" className="login__logo" />
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={(e) => handleSubmit(e)}>
+            {errorMsg ? <div className="msg">{errorMsg}</div> : ""}
+
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label className="form-label">Email address *</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
                 className="form-field"
+                value={email}
                 onChange={(e) =>
                   updateState({ ...state, email: e.target.value })
                 }
               />
             </Form.Group>
-            {/* <div>{email}</div> */}
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label className="form-label">Password</Form.Label>
@@ -44,26 +54,17 @@ const Login = (obj) => {
                 type="password"
                 placeholder="Enter password"
                 className="form-field"
+                value={password}
                 onChange={(e) =>
-                  updateState({ ...state, pass: e.target.value })
+                  updateState({ ...state, password: e.target.value })
                 }
               />
             </Form.Group>
-            {/* <div>{pass}</div> */}
 
-            <Link
-              to={"dashboard"}
-              style={{ color: "#fff", textDecoration: "none" }}
-            >
-              <Button
-                variant="primary"
-                type="submit"
-                className="submit-btn"
-                onClick={handleSubmit()}
-              >
-                Submit
-              </Button>
-            </Link>
+            <Button variant="primary" type="submit" className="submit-btn">
+              Submit
+            </Button>
+            {/* </Link> */}
           </Form>
           <p>Forgot Password?</p>
           <h5>

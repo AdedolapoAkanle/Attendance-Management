@@ -3,8 +3,8 @@ import { LOGIN } from "../actions";
 const INITIAL_STATE = {
   loginState: {
     email: "",
-    pass: "",
-    errorMsg: true,
+    password: "",
+    errorMsg: "",
   },
 };
 

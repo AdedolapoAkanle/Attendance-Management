@@ -11,6 +11,7 @@ const INITIAL_STATE = {
     showParentModal: false,
     showEditParentModal: false,
     selectedParentID: "",
+    isLoading: true,
   },
 };
 

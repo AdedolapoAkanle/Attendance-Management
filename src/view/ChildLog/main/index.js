@@ -1,21 +1,38 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { PageTitle } from "../../../components/globalComponents/PageTitle";
-import ScrollableTable from "../operations/ScrollableTable";
+import ChildLogTable from "../components/ChildLogTable";
 import "../../../Styles/view/AttendanceSheet.css";
 import { connect } from "react-redux";
-import { childAction } from "../../../redux/actions/type";
+import { childLogAction } from "../../../redux/actions/type";
+import { formatDate } from "../../../HelperFunction/commonFunction";
+import Loader from "../../../components/globalComponents/Spinner";
 
 const ChildLog = ({ state, updateState }) => {
-  const { arr, query } = state;
+  const { staticArr, logDate, isLoading } = state;
 
-  console.log(arr);
+  const handleDate = (e, field) => {
+    // updateState({ ...state, isLoading: true });
+    const value = formatDate(e.target.valueAsDate);
+    updateState({ ...state, [field]: value, isLoading: true });
+  };
+
+  const handleFilter = (e) => {
+    const query = e.target.value;
+    if (!query) return;
+    const filter = staticArr.filter((el) => {
+      return el.parentId.startsWith(query);
+    });
+    console.log({ filter, query }, "iurouo");
+
+    updateState({ ...state, arr: filter, query });
+  };
 
   return (
     <main className="attendance">
       <section className="attendance__section container-fluid">
         <div className="container">
-          <PageTitle header="Children Log" />
+          <PageTitle header="Child Log" />
           <div className="attendance__container" style={{ marginTop: "5rem" }}>
             <Form
               className="attendance__form"
@@ -30,23 +47,24 @@ const ChildLog = ({ state, updateState }) => {
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Control
                   type="text"
-                  placeholder="Search name"
+                  placeholder="Search phone"
                   className="attendance__form-field"
-                  onChange={(e) =>
-                    updateState({ ...state, query: e.target.value })
-                  }
+                  onChange={(e) => handleFilter(e)}
                 />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Control
                   type="date"
-                  placeholder="Enter date"
+                  defaultValue={logDate}
                   className="attendance__form-field"
+                  onChange={
+                    isLoading ? <Loader /> : (e) => handleDate(e, "logDate")
+                  }
                 />
               </Form.Group>
             </Form>
-            <ScrollableTable />
+            <ChildLogTable />
           </div>
         </div>
       </section>
@@ -54,12 +72,12 @@ const ChildLog = ({ state, updateState }) => {
   );
 };
 
-const mapStateToProps = ({ child }) => ({
-  state: child.childState,
+const mapStateToProps = ({ childLog }) => ({
+  state: childLog.childLogState,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateState: (params) => dispatch(childAction(params)),
+  updateState: (params) => dispatch(childLogAction(params)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChildLog);
