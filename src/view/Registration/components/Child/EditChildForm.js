@@ -5,7 +5,7 @@ import { childAction } from "../../../../redux/actions/type";
 import "../../../../Styles/Components/Modal.css";
 
 const EditChildForm = ({ state, updateState }) => {
-  const { firstName, lastName, parentId, gender, dob } = state;
+  const { firstName, lastName, parentId, gender, dob, address } = state;
   // console.log(state, "state");
 
   const handleOnchange = (e, field) => {
@@ -35,6 +35,17 @@ const EditChildForm = ({ state, updateState }) => {
           placeholder="Enter first name"
           className="modal__form-field"
           onChange={(e) => handleOnchange(e, "firstName")}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label className="modal__label">Address</Form.Label>
+        <Form.Control
+          type="text"
+          value={address}
+          placeholder="Enter address"
+          className="modal__form-field"
+          onChange={(e) => handleOnchange(e, "address")}
         />
       </Form.Group>
 

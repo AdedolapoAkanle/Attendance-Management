@@ -6,6 +6,7 @@ const INITIAL_STATE = {
     parentId: "",
     lastName: "",
     firstName: "",
+    address: "",
     gender: "",
     dob: "",
     arr: [],

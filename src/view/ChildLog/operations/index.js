@@ -20,6 +20,7 @@ export const getChildLog = async (date) => {
         count: index + 1,
         firstName: capitalizeFirstLetter(el.first_name),
         lastName: capitalizeFirstLetter(el.last_name),
+        address: el.address,
         gender: el.gender,
         parentId: el.parent_id,
         tag: el.tag,
@@ -145,6 +146,22 @@ export const columns = [
   {
     dataField: "lastName",
     text: "Last Name",
+    headerStyle: {
+      borderRight: "hidden",
+      borderLeft: "hidden",
+      fontSize: "14px",
+      borderTop: "1px solid rgba(255,255,255,0.12)",
+      // width: "5%",
+    },
+    style: {
+      color: "",
+      border: "none",
+    },
+  },
+
+  {
+    dataField: "address",
+    text: "Address",
     headerStyle: {
       borderRight: "hidden",
       borderLeft: "hidden",

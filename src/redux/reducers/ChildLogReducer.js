@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     parentId: "",
     lastName: "",
     firstName: "",
+    address: "",
     gender: "",
     logDate: formatDate(new Date()),
     tag: "",

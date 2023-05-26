@@ -57,7 +57,6 @@ const ParentTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
-        cursor: "pointer",
       },
     },
 
@@ -74,7 +73,6 @@ const ParentTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
-        cursor: "pointer",
       },
     },
 
@@ -91,7 +89,6 @@ const ParentTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
-        cursor: "pointer",
       },
     },
 
@@ -108,7 +105,6 @@ const ParentTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
-        cursor: "pointer",
       },
     },
 
@@ -125,7 +121,6 @@ const ParentTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
-        cursor: "pointer",
       },
     },
 

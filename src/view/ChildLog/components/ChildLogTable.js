@@ -34,7 +34,7 @@ const ChildLogTable = ({ state, updateState }) => {
         <NewTable
           data={arr}
           columns={columns}
-          style={{ width: "80%", marginLeft: "auto" }}
+          style={{ width: "90%", marginLeft: "auto", marginLeft: "10rem" }}
         />
       )}
     </div>

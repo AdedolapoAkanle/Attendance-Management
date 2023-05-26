@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form } from "react-bootstrap";
+import { Col, FloatingLabel, Form, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { childAction, parentAction } from "../../../../redux/actions/type";
 import "../../../../Styles/Components/Modal.css";
@@ -29,23 +29,38 @@ const CreateChildForm = ({
 
   return (
     <Form className="modal__form">
-      <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label className="modal__label">Last Name</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter last name"
-          className="modal__form-field"
-          onChange={(e) => handleOnchange(e, "lastName")}
-        />
-      </Form.Group>
+      <Row className="g-2">
+        <Col md>
+          <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Label className="modal__label">Last Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter last name"
+              className="modal__form-field"
+              onChange={(e) => handleOnchange(e, "lastName")}
+            />
+          </Form.Group>
+        </Col>
+        <Col md>
+          <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Label className="modal__label">First Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter first name"
+              className="modal__form-field"
+              onChange={(e) => handleOnchange(e, "firstName")}
+            />
+          </Form.Group>
+        </Col>
+      </Row>
 
-      <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label className="modal__label">First Name</Form.Label>
+      <Form.Group className="mb-3">
+        <Form.Label className="modal__label">Address</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter first name"
+          placeholder="Enter address"
           className="modal__form-field"
-          onChange={(e) => handleOnchange(e, "firstName")}
+          onChange={(e) => handleOnchange(e, "address")}
         />
       </Form.Group>
 
@@ -65,29 +80,33 @@ const CreateChildForm = ({
           ))}
         </Form.Select>
       </Form.Group>
-
-      <Form.Group>
-        <Form.Label className="modal__label">Gender</Form.Label>
-        <Form.Select
-          aria-label=""
-          className="modal__form-field modal__drop"
-          onChange={(e) => handleOnchange(e, "gender")}
-        >
-          <option hidden>Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </Form.Select>
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicDate">
-        <Form.Label className="modal__label">Dob</Form.Label>
-        <Form.Control
-          type="date"
-          placeholder="Enter Dob"
-          className="modal__form-field modal__drop"
-          onChange={(e) => handleOnchange(e, "dob")}
-        />
-      </Form.Group>
+      <Row className="g-2">
+        <Col md>
+          <Form.Group>
+            <Form.Label className="modal__label">Gender</Form.Label>
+            <Form.Select
+              aria-label=""
+              className="modal__form-field modal__drop"
+              onChange={(e) => handleOnchange(e, "gender")}
+            >
+              <option hidden>Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </Form.Select>
+          </Form.Group>
+        </Col>
+        <Col md>
+          <Form.Group className="mb-3" controlId="formBasicDate">
+            <Form.Label className="modal__label">Dob</Form.Label>
+            <Form.Control
+              type="date"
+              placeholder="Enter Dob"
+              className="modal__form-field modal__drop"
+              onChange={(e) => handleOnchange(e, "dob")}
+            />
+          </Form.Group>
+        </Col>
+      </Row>
     </Form>
   );
 };

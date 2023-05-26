@@ -43,6 +43,9 @@ export const getChild = async () => {
         count: index + 1,
         firstName: capitalizeFirstLetter(el.first_name),
         lastName: capitalizeFirstLetter(el.last_name),
+        address: capitalizeFirstLetter(el.address),
+        age: el.age,
+        date: formatDate(el.date),
         gender: capitalizeFirstLetter(el.gender),
         parentId: el.parent_id,
         dob: formatDate(el.d_o_b),
@@ -92,11 +95,12 @@ export const submitSingleEditChild = async (data) => {
   console.log(data, "dataaaa");
 
   try {
-    const { id, firstName, lastName, parentId, gender, dob } = data;
+    const { id, firstName, lastName, address, parentId, gender, dob } = data;
     const api = new Api();
     const res = await api.update(`child/${id}`, {
       firstName,
       lastName,
+      address,
       parentId,
       gender,
       dob,

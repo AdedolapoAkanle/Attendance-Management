@@ -1,20 +1,14 @@
-import React from "react";
-import MainTooltip from "../../../../components/globalComponents/Tooltip";
-import { FaPen, FaRegEye, FaTimes } from "react-icons/fa";
-import { connect } from "react-redux";
-import { childAction } from "../../../../redux/actions/type";
-import {
-  deleteSingleChild,
-  getChild,
-  getSingleChild,
-} from "../../operations/child";
-import { useEffect } from "react";
-import { formatDate } from "../../../../HelperFunction/commonFunction";
-import Loader from "../../../../components/globalComponents/Spinner";
+import React, { useEffect } from "react";
 import NewTable from "../../../../components/globalComponents/Table";
+import Loader from "../../../../components/globalComponents/Spinner";
+import { childAction } from "../../../../redux/actions/type";
+import { connect } from "react-redux";
+import CustomModal from "../../../../components/globalComponents/CustomModal";
+import EditChildForm from "./EditChildForm";
+import { getChild } from "../../operations/child";
 
-const ChildTable = ({ state, updateState }) => {
-  const { arr, isLoading } = state;
+const ChildInfoTable = ({ state, updateState }) => {
+  const { arr, isLoading, showEditChildModal } = state;
 
   useEffect(() => {
     handleFetch();
@@ -25,26 +19,9 @@ const ChildTable = ({ state, updateState }) => {
     updateState({ ...state, arr: child, isLoading: false });
   };
 
-  const handleEdit = async (id) => {
-    const child = await getSingleChild(id);
-    updateState({
-      ...state,
-      selectedId: id,
-      showEditChildModal: true,
-      firstName: child.first_name,
-      lastName: child.last_name,
-      gender: child.gender,
-      address: child.address,
-      parentId: child.parent_id,
-      dob: formatDate(child.d_o_b),
-    });
-  };
+  // const handleClick = {
 
-  const handleDelete = async (id) => {
-    await deleteSingleChild(id);
-    await handleFetch();
-  };
-
+  // }
   const columns = [
     {
       dataField: "count",
@@ -75,6 +52,7 @@ const ChildTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
+        cursor: "pointer",
       },
     },
 
@@ -91,6 +69,7 @@ const ChildTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
+        cursor: "pointer",
       },
     },
 
@@ -107,6 +86,7 @@ const ChildTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
+        cursor: "pointer",
       },
     },
 
@@ -123,6 +103,7 @@ const ChildTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
+        cursor: "pointer",
       },
     },
 
@@ -139,6 +120,41 @@ const ChildTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
+        cursor: "pointer",
+      },
+    },
+
+    {
+      dataField: "age",
+      text: "Age",
+      sort: true,
+      headerStyle: {
+        borderTop: "1px solid rgba(255,255,255,0.12)",
+        borderRight: "hidden",
+        borderLeft: "hidden",
+        fontSize: "14px",
+      },
+      style: {
+        color: "",
+        border: "none",
+        cursor: "pointer",
+      },
+    },
+
+    {
+      dataField: "date",
+      text: "Registered Date",
+      sort: true,
+      headerStyle: {
+        borderTop: "1px solid rgba(255,255,255,0.12)",
+        borderRight: "hidden",
+        borderLeft: "hidden",
+        fontSize: "14px",
+      },
+      style: {
+        color: "",
+        border: "none",
+        cursor: "pointer",
       },
     },
 
@@ -155,45 +171,7 @@ const ChildTable = ({ state, updateState }) => {
       style: {
         color: "",
         border: "none",
-      },
-    },
-
-    {
-      dataField: "actions",
-      text: "Actions",
-      sortable: true,
-      formatter: (cell, row) => (
-        <>
-          <MainTooltip
-            tooltipText={"Edit"}
-            body={
-              <FaPen
-                className="tab-icon pen"
-                onClick={() => handleEdit(row.id)}
-              />
-            }
-          />
-          <MainTooltip
-            tooltipText={"Delete"}
-            body={
-              <FaTimes
-                className="tab-icon"
-                onClick={() => handleDelete(row.id)}
-              />
-            }
-          />
-        </>
-      ),
-      headerStyle: {
-        borderTop: "1px solid rgba(255,255,255,0.12)",
-        borderRight: "hidden",
-        borderLeft: "hidden",
-        fontSize: "14px",
-        // width: "5%",
-      },
-      style: {
-        color: "",
-        border: "none",
+        cursor: "pointer",
       },
     },
   ];
@@ -203,11 +181,26 @@ const ChildTable = ({ state, updateState }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <NewTable
-          data={arr}
-          columns={columns}
-          style={{ width: "100%", margin: "auto", marginTop: "3rem" }}
-        />
+        <>
+          <NewTable
+            data={arr}
+            columns={columns}
+            style={{
+              width: "77%",
+              margin: "auto",
+              paddingTop: "3rem",
+              marginLeft: "17rem",
+            }}
+            handleClick={
+              console.log("clicked")
+              // <CustomModal
+              //   header={"Edit Child"}
+              //   body={<EditChildForm />}
+              //   showModal={showEditChildModal}
+              // />
+            }
+          />
+        </>
       )}
     </div>
   );
@@ -221,4 +214,4 @@ const mapDispatchToProps = (dispatch) => ({
   updateState: (params) => dispatch(childAction(params)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChildTable);
+export default connect(mapStateToProps, mapDispatchToProps)(ChildInfoTable);

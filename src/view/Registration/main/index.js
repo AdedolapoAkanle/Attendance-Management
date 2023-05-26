@@ -49,6 +49,7 @@ const Register = ({
     firstName: childFirstName,
     lastName: childLastName,
     id: selectedId,
+    address,
     parentId,
     gender,
     dob,
@@ -91,6 +92,7 @@ const Register = ({
     await submitChild({
       firstName: childFirstName,
       lastName: childLastName,
+      address,
       parentId,
       gender,
       dob,
@@ -112,6 +114,7 @@ const Register = ({
       id: stateChild.selectedId,
       firstName: childFirstName,
       lastName: childLastName,
+      address,
       parentId,
       gender,
       dob,
@@ -230,6 +233,7 @@ const Register = ({
               onHide={() => handleHideChildModal("create")}
               onSubmit={handleRegisterChild}
             />
+            
             <CustomModal
               header={"Edit Child"}
               body={<EditChildForm />}

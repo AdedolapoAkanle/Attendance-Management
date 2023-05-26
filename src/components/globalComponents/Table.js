@@ -1,5 +1,7 @@
+import { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import "../../Styles/Components/GlobalComponents/Table.css";
 
 const options = {
   paginationSize: 10,
@@ -13,13 +15,13 @@ const options = {
   },
 };
 
-const handleClick = (row) => {
-  if (true) {
-    console.log(`Clicked row ${row.id}`);
-  }
-};
+const NewTable = ({ data, columns, style, handleClick }) => {
+  const [selectedRow, setSelectedRow] = useState(null);
 
-const NewTable = ({ data, columns, style }) => {
+  // const handleClick = (row) => {
+  //   setSelectedRow(row.id);
+  // };
+
   return (
     <div style={style}>
       <BootstrapTable
@@ -28,10 +30,16 @@ const NewTable = ({ data, columns, style }) => {
         columns={columns}
         pagination={data.length > 10 ? paginationFactory(options) : null}
         rowEvents={{
-          onClick: (e, row, rowIndex) => {
+          onClick: (e, row) => {
             handleClick(row);
           },
         }}
+        rowClasses={(row) => (row.id === selectedRow ? "selected" : "")}
+        // rowEvents={{
+        //   onClick: (e, row, rowIndex) => {
+        //     handleClick(row);
+        //   },
+        // }}
         // striped
         hover
         condensed
