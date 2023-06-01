@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import NewTable from "../../../../components/globalComponents/Table";
 import Loader from "../../../../components/globalComponents/Spinner";
 import { childAction } from "../../../../redux/actions/type";
@@ -42,6 +43,9 @@ const ChildInfoTable = ({ state, updateState }) => {
     {
       dataField: "firstName",
       text: "First Name",
+      formatter: (cell, row) => {
+        return <span>{row.firstName}</span>;
+      },
       headerStyle: {
         borderTop: "1px solid rgba(255,255,255,0.12)",
         borderRight: "hidden",
@@ -59,6 +63,9 @@ const ChildInfoTable = ({ state, updateState }) => {
     {
       dataField: "lastName",
       text: "Last Name",
+      formatter: (cell, row) => {
+        return <span>{row.lastName}</span>;
+      },
       headerStyle: {
         borderTop: "1px solid rgba(255,255,255,0.12)",
         borderRight: "hidden",
@@ -76,6 +83,9 @@ const ChildInfoTable = ({ state, updateState }) => {
     {
       dataField: "parentId",
       text: "Parent's Number",
+      formatter: (cell, row) => {
+        return <span>{row.parentID}</span>;
+      },
       headerStyle: {
         borderTop: "1px solid rgba(255,255,255,0.12)",
         borderRight: "hidden",
@@ -93,6 +103,9 @@ const ChildInfoTable = ({ state, updateState }) => {
     {
       dataField: "gender",
       text: "Gender",
+      formatter: (cell, row) => {
+        return <span>{row.gender}</span>;
+      },
       sort: true,
       headerStyle: {
         borderTop: "1px solid rgba(255,255,255,0.12)",
@@ -110,6 +123,9 @@ const ChildInfoTable = ({ state, updateState }) => {
     {
       dataField: "dob",
       text: "Dob",
+      formatter: (cell, row) => {
+        return <span>{row.dob}</span>;
+      },
       sort: true,
       headerStyle: {
         borderTop: "1px solid rgba(255,255,255,0.12)",
@@ -127,6 +143,9 @@ const ChildInfoTable = ({ state, updateState }) => {
     {
       dataField: "age",
       text: "Age",
+      formatter: (cell, row) => {
+        return <span>{row.age}</span>;
+      },
       sort: true,
       headerStyle: {
         borderTop: "1px solid rgba(255,255,255,0.12)",
@@ -144,6 +163,9 @@ const ChildInfoTable = ({ state, updateState }) => {
     {
       dataField: "date",
       text: "Registered Date",
+      formatter: (cell, row) => {
+        return <span>{row.date}</span>;
+      },
       sort: true,
       headerStyle: {
         borderTop: "1px solid rgba(255,255,255,0.12)",
@@ -161,6 +183,9 @@ const ChildInfoTable = ({ state, updateState }) => {
     {
       dataField: "address",
       text: "Address",
+      formatter: (cell, row) => {
+        return <span>{row.address}</span>;
+      },
       sort: true,
       headerStyle: {
         borderTop: "1px solid rgba(255,255,255,0.12)",
@@ -183,7 +208,7 @@ const ChildInfoTable = ({ state, updateState }) => {
       ) : (
         <>
           <NewTable
-            data={arr}
+            // data={arr}
             columns={columns}
             style={{
               width: "77%",
@@ -191,14 +216,6 @@ const ChildInfoTable = ({ state, updateState }) => {
               paddingTop: "3rem",
               marginLeft: "17rem",
             }}
-            handleClick={
-              console.log("clicked")
-              // <CustomModal
-              //   header={"Edit Child"}
-              //   body={<EditChildForm />}
-              //   showModal={showEditChildModal}
-              // />
-            }
           />
         </>
       )}

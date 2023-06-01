@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import { useNavigate } from "react-router-dom";
 import "../../Styles/Components/GlobalComponents/Table.css";
 
 const options = {
@@ -15,13 +16,8 @@ const options = {
   },
 };
 
-const NewTable = ({ data, columns, style, handleClick }) => {
-  const [selectedRow, setSelectedRow] = useState(null);
-
-  // const handleClick = (row) => {
-  //   setSelectedRow(row.id);
-  // };
-
+const NewTable = ({ data, columns, style, path, handleClick }) => {
+  const navigate = useNavigate();
   return (
     <div style={style}>
       <BootstrapTable
@@ -31,16 +27,11 @@ const NewTable = ({ data, columns, style, handleClick }) => {
         pagination={data.length > 10 ? paginationFactory(options) : null}
         rowEvents={{
           onClick: (e, row) => {
-            handleClick(row);
+            navigate(`/${path}/${row.id}?`);
           },
         }}
-        rowClasses={(row) => (row.id === selectedRow ? "selected" : "")}
-        // rowEvents={{
-        //   onClick: (e, row, rowIndex) => {
-        //     handleClick(row);
-        //   },
-        // }}
-        // striped
+        // rowClasses={(row) => (row.id === selectedRow ? "selected" : "")}
+
         hover
         condensed
       />

@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { formatDate } from "../../../../HelperFunction/commonFunction";
 import Loader from "../../../../components/globalComponents/Spinner";
 import NewTable from "../../../../components/globalComponents/Table";
+import { useNavigate } from "react-router";
 
 const ChildTable = ({ state, updateState }) => {
   const { arr, isLoading } = state;
@@ -19,6 +20,8 @@ const ChildTable = ({ state, updateState }) => {
   useEffect(() => {
     handleFetch();
   }, []);
+
+  const navigate = useNavigate();
 
   const handleFetch = async () => {
     const child = await getChild();
@@ -204,6 +207,7 @@ const ChildTable = ({ state, updateState }) => {
         <Loader />
       ) : (
         <NewTable
+          path="dashboard"
           data={arr}
           columns={columns}
           style={{ width: "100%", margin: "auto", marginTop: "3rem" }}

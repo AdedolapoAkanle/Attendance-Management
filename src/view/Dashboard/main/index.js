@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import NewTable from "../../../components/globalComponents/Table";
 import ChildInfoTable from "../../Registration/components/Child/ChildInfoTable";
+import { useParams } from "react-router";
 
-export const Dashboard = () => {
-  return <ChildInfoTable />;
+const Dashboard = () => {
+  // const { childId } = useParams();
+  // const [child, setChild] = useState(null);
+
+  return (
+    <div>
+      <ChildInfoTable />
+    </div>
+  );
 };
+
+export default Dashboard;

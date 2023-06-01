@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Nav from "../components/globalComponents/Nav";
-import { Dashboard } from "../view/Dashboard/main";
+import Dashboard from "../view/Dashboard/main";
 import Login from "../view/Login/main";
 import Register from "../view/Registration/main";
 import ChildLog from "../view/ChildLog/main";
