@@ -9,7 +9,7 @@ export const getParent = async () => {
 
   try {
     const api = new Api();
-    const res = await api.get("parent");
+    const res = await api.get(`parent`);
 
     list = res?.data.map((el, index) => {
       return {
@@ -54,6 +54,7 @@ export const deleteSingleParent = async (id) => {
 };
 
 export const submitParent = async (data) => {
+  console.log(data, "dataa");
   let parent;
   try {
     const api = new Api();

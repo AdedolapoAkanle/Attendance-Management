@@ -233,7 +233,7 @@ const Register = ({
               onHide={() => handleHideChildModal("create")}
               onSubmit={handleRegisterChild}
             />
-            
+
             <CustomModal
               header={"Edit Child"}
               body={<EditChildForm />}
@@ -249,7 +249,7 @@ const Register = ({
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.child);
+  // console.log(state.parent);
   return {
     state: state.parent.parentState,
     stateChild: state.child.childState,

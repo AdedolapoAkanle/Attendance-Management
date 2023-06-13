@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Col, FloatingLabel, Form, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { childAction, parentAction } from "../../../../redux/actions/type";
-import "../../../../Styles/Components/Modal.css";
 import { fetchParentByPhone } from "../../operations/parent";
+import "../../../../Styles/Components/Modal.css";
 
 const CreateChildForm = ({
   state,

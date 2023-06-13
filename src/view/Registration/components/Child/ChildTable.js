@@ -1,6 +1,6 @@
 import React from "react";
 import MainTooltip from "../../../../components/globalComponents/Tooltip";
-import { FaPen, FaRegEye, FaTimes } from "react-icons/fa";
+import { FaPen, FaTimes } from "react-icons/fa";
 import { connect } from "react-redux";
 import { childAction } from "../../../../redux/actions/type";
 import {
@@ -20,8 +20,6 @@ const ChildTable = ({ state, updateState }) => {
   useEffect(() => {
     handleFetch();
   }, []);
-
-  const navigate = useNavigate();
 
   const handleFetch = async () => {
     const child = await getChild();
@@ -165,7 +163,7 @@ const ChildTable = ({ state, updateState }) => {
       dataField: "actions",
       text: "Actions",
       sortable: true,
-      formatter: (cell, row) => (
+      formatter: (row) => (
         <>
           <MainTooltip
             tooltipText={"Edit"}

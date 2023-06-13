@@ -16,8 +16,19 @@ const options = {
   },
 };
 
-const NewTable = ({ data, columns, style, path, handleClick }) => {
+const NewTable = ({ data, columns, style, path }) => {
   const navigate = useNavigate();
+  const [selectedRow, setSelectedRow] = useState(null);
+  const tableRowEvents = {
+    onClick: (e, row, rowIndex) => {
+      console.log(row);
+      setSelectedRow(row.id);
+      navigate(`/${path}/${row.id}`);
+    },
+    // onMouseEnter: (e, row, rowIndex) => {
+    //   console.log(`enter on row with index: ${rowIndex}`);
+    // },
+  };
   return (
     <div style={style}>
       <BootstrapTable
@@ -25,13 +36,8 @@ const NewTable = ({ data, columns, style, path, handleClick }) => {
         data={data}
         columns={columns}
         pagination={data.length > 10 ? paginationFactory(options) : null}
-        rowEvents={{
-          onClick: (e, row) => {
-            navigate(`/${path}/${row.id}?`);
-          },
-        }}
-        // rowClasses={(row) => (row.id === selectedRow ? "selected" : "")}
-
+        rowEvents={tableRowEvents}
+        rowClasses={(row) => (row.id === selectedRow ? "selected" : "")}
         hover
         condensed
       />

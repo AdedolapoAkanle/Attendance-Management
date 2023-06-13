@@ -1,28 +1,36 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useNavigate } from "react-router-dom";
 import NewTable from "../../../../components/globalComponents/Table";
 import Loader from "../../../../components/globalComponents/Spinner";
 import { childAction } from "../../../../redux/actions/type";
 import { connect } from "react-redux";
 import CustomModal from "../../../../components/globalComponents/CustomModal";
 import EditChildForm from "./EditChildForm";
-import { getChild } from "../../operations/child";
+import { getSingleChild } from "../../operations/child";
+import { formatDate } from "../../../../HelperFunction/commonFunction";
 
 const ChildInfoTable = ({ state, updateState }) => {
   const { arr, isLoading, showEditChildModal } = state;
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    handleFetch();
-  }, []);
+  // useEffect(() => {
+  //   handleFetch();
+  // }, []);
 
-  const handleFetch = async () => {
-    const child = await getChild();
-    updateState({ ...state, arr: child, isLoading: false });
+  const handleFetch = async (id) => {
+    const child = await getSingleChild(id);
+    updateState({
+      ...state,
+      selectedId: id,
+      firstName: child.first_name,
+      lastName: child.last_name,
+      gender: child.gender,
+      address: child.address,
+      parentId: child.parent_id,
+      dob: formatDate(child.d_o_b),
+    });
   };
 
-  // const handleClick = {
-
-  // }
   const columns = [
     {
       dataField: "count",
@@ -208,7 +216,7 @@ const ChildInfoTable = ({ state, updateState }) => {
       ) : (
         <>
           <NewTable
-            // data={arr}
+            data={arr}
             columns={columns}
             style={{
               width: "77%",
